@@ -1,17 +1,39 @@
 package org.example;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+import java.util.List;
+
 public class Main {
     public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+        LibService libService = new LibService();
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
+        Book book1 = new Book("12345", "Java Programming", "John Doe");
+        Book book2 = new Book("67890", "Advanced Java", "Jane Smith");
+
+        libService.registerBook(book1);
+        libService.registerBook(book2);
+
+        System.out.println("\nList of all books:");
+        List<Book> books = libService.listAllBooks();
+        for (Book book : books) {
+            System.out.println(book.getTitle());
+        }
+
+        System.out.println("\nSearching for book with ISBN 12345:");
+        libService.findBookByIsbn("12345");
+
+
+        System.out.println("\nSearching for book by author 'Jane Smith':");
+        libService.findBookByAuthor("Jane Smith");
+
+
+        System.out.println("\nDeleting book with ISBN 12345:");
+        libService.deleteBookByIsbn("12345");
+
+
+        System.out.println("\nList of all books after deletion:");
+        books = libService.listAllBooks();
+        for (Book book : books) {
+            System.out.println(book.getTitle());
         }
     }
 }
