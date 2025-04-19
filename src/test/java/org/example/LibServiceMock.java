@@ -1,5 +1,6 @@
 package org.example;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.testng.annotations.Test;
@@ -8,8 +9,10 @@ import static org.testng.AssertJUnit.assertEquals;
 import static org.testng.AssertJUnit.assertNotNull;
 @ExtendWith(MockitoExtension.class)
 public class LibServiceMock {
-        @Mock
-        LibService libService;
+    @Mock
+    LibRepository libRepository;
+    @InjectMocks
+    LibService libService;
         @Test
         void testGetBookByAuthor() {
             Book mockedBook = new Book("Java", "Anne Tasso", "123456789");
